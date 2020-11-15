@@ -12,8 +12,10 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="row">
-        <nav className="navbar navbar-dark bg-dark fixed-top">
-          <span className="navbar-brand">Mini News App</span>
+        <nav className="navbar navbar-dark search-bar fixed-top">
+          <span className="navbar-brand">
+            <i className="far fa-newspaper"></i> Mini News App
+          </span>
           <form onSubmit={this.onFormSubmit} className="form-inline">
             <label htmlFor="searchInput" style={{ color: "white" }}>
               Search for spesicif news
@@ -22,7 +24,6 @@ class SearchBar extends React.Component {
               onChange={(e) => this.setState({ term: e.target.value })}
               className="form-control mr-sm-2 ml-sm-2"
               type="text"
-              placeholder="Search"
               id="searchInput"
             />
             <button className="btn btn-primary my-2 my-sm-0" type="submit">

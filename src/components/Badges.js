@@ -2,48 +2,48 @@ import React from "react";
 
 const Badges = ({ onSelectTopic }) => {
   return (
-    <div>
+    <div className="text-center">
       <span
         onClick={() => onSelectTopic("")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Breaking News
+        <i className="fas fa-bolt"></i> Breaking News
       </span>
       <span
         onClick={() => onSelectTopic("entertainment")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Entertainment
+        <i className="fas fa-video"></i> Entertainment
       </span>
       <span
         onClick={() => onSelectTopic("science")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Science
+        <i className="fas fa-flask"></i> Science
       </span>
       <span
         onClick={() => onSelectTopic("sports")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Sports
+        <i className="fas fa-futbol"></i> Sports
       </span>
       <span
         onClick={() => onSelectTopic("technology")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Technology
+        <i className="fas fa-laptop-code"></i> Technology
       </span>
       <span
         onClick={() => onSelectTopic("business")}
         style={{ cursor: "pointer" }}
         className="badge badge-info m-2 topics"
       >
-        Business
+        <i className="fas fa-business-time"></i> Business
       </span>
     </div>
   );

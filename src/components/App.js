@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/app.css";
 import newsapi from "../apis/newsapi";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
@@ -30,7 +31,6 @@ class App extends React.Component {
           category: topic,
         },
       });
-
       this.setState({ news: articles, loadingNews: false });
     } catch (error) {
       this.setState({ errMessage: error.message, loadingNews: false });
@@ -75,7 +75,6 @@ class App extends React.Component {
   }
 
   onFormSubmit = async (term) => {
-    console.log(term);
     this.setState({ loadingNews: true });
     try {
       const response = await newsapi.get("/everything", {
@@ -91,7 +90,6 @@ class App extends React.Component {
   };
 
   onSelectNewspaper = async (selectedSource) => {
-    console.log("selected newspaper", selectedSource);
     this.setState({ loadingNews: true });
     try {
       const response = await newsapi.get("/top-headlines", {
@@ -104,7 +102,6 @@ class App extends React.Component {
         selectedNewspaper: selectedSource,
         loadingNews: false,
       });
-      console.log("get data", response.data.articles);
     } catch (error) {
       this.setState({ errMessage: error.message, loadingNews: false });
       return error;
@@ -112,7 +109,6 @@ class App extends React.Component {
   };
 
   onAddFavoriteNewspapers = (newspaper) => {
-    console.log(newspaper);
     this.setState({
       favoriteNewspapers: [...this.state.favoriteNewspapers, newspaper],
       newsSources: this.state.newsSources.filter((item) => item !== newspaper),
@@ -125,13 +121,8 @@ class App extends React.Component {
       ),
       newsSources: [...this.state.newsSources, newspaper],
     });
-    console.log(
-      "APP onRemoveFavoriteNewspapers",
-      this.state.favoriteNewspapers
-    );
   };
   onSelectTopic = (topic) => {
-    console.log(topic);
     this.setState({ loadingNews: true });
     this.fetchTopNews(this.state.lang, topic);
   };
@@ -179,7 +170,7 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <SearchBar onTermSubmit={this.onFormSubmit} />
-        <div className="row">
+        <div className="row news-container">
           {this.renderSidebar()}
 
           <div className="col-md-9 ml-sm-auto col-lg-10 px-md-4">

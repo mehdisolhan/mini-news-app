@@ -1,9 +1,4 @@
 import React from "react";
-import "../css/sideBar.css";
-import "jquery";
-
-//TODO remove jquery from project
-//TODO toogle button with collapse
 
 const SideBar = (props) => {
   const {
@@ -13,7 +8,6 @@ const SideBar = (props) => {
     onSelectNewspaper,
   } = props;
   const favoriteNewspapers = props.favoriteNewspapers;
-  console.log(sources);
 
   const renderedNewsList = sources.map((source, index) => {
     return (
@@ -30,8 +24,8 @@ const SideBar = (props) => {
       </li>
     );
   });
+
   const renderFavoriteList = favoriteNewspapers.map((source, index) => {
-    console.log("favorites", source);
     return (
       <li key={index} className="nav item">
         <span onClick={() => onSelectNewspaper(source.id)} className="nav-link">
@@ -49,23 +43,20 @@ const SideBar = (props) => {
 
   return (
     <div>
-      <button
-        className="navbar-toggler position-absolute d-md-none collapsed"
-        type="button"
-        data-toggle="collapse"
-        data-target="#sidebarMenu"
-        aria-controls="sidebarMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div className="sidebar-sticky pt-3">
+      <nav className="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div className="sidebar-sticky pt-3 ">
           <h6 className="sidebar-heading justify-content-between align-items-center text-center text-muted">
             Favorites
           </h6>
-          <ul className="nav flex-column">{renderFavoriteList}</ul>
+          <ul className="nav flex-column">
+            {favoriteNewspapers.length === 0 ? (
+              <span className="text-center text-muted favorite-info">
+                There is no favorite newspaper
+              </span>
+            ) : (
+              renderFavoriteList
+            )}
+          </ul>
 
           <h6 className="sidebar-heading justify-content-between align-items-center mt-3 text-center text-muted">
             Newspapers

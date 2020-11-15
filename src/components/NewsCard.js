@@ -1,9 +1,7 @@
 import React from "react";
 import * as moment from "moment";
-import "../css/newsCard.css";
 import emptyImage from "../images/no-image.svg";
 
-//TODO dot line
 const NewsCard = ({ news }) => {
   return (
     <article className="col-sm-4">
@@ -26,7 +24,9 @@ const NewsCard = ({ news }) => {
             />
           </a>
           <div className="position-absolute m-2 b-0">
-            <span className="p-1 badge badge-primary">{news.source.name}</span>
+            <span className="p-1 badge badge-secondary">
+              {news.source.name}
+            </span>
           </div>
         </div>
         <div className="card-body">
@@ -34,7 +34,7 @@ const NewsCard = ({ news }) => {
             <span>{news.title}</span>
           </h3>
           <div className="card-text mb-2 text-muted small">
-            <span className="font-weight-bold d-none d-sm-inline mr-1">
+            <span className="font-weight-bold d-sm-inline mr-1">
               <span>{news.author}</span>{" "}
             </span>
             <span className="news-date float-right">
