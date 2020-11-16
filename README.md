@@ -2,6 +2,27 @@
 
 This project enables the listing of news brought from api. Information such as the picture, title, description, time and author of the news is presented to the user. When the user clicks on the news, it is directed to the website that is the main source of the news. In addition, there are various news sources and only the news of that sources is also shown. The user can favorite the news source if he / she wants and even if he closes the browser, those sources will continue to be stored. The user can search with the keywords they want and reach the results. There are also various topics on the page, and by clicking on those topics, they can reach the relevant news in a short way.
 
+### How to Run
+
+1- Open terminal and then type
+
+```
+git clone https://github.com/mehdisolhan/mini-news-app.git
+```
+
+2- `cd` into the new folder and type
+
+```
+npm install
+```
+This is required for required dependencies
+
+3- To run the project.
+
+```
+npm start
+```
+
 ### Build Dependencies
 
 - React: 17.0.1
