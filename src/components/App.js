@@ -122,6 +122,7 @@ class App extends React.Component {
       newsSources: [...this.state.newsSources, newspaper],
     });
   };
+
   onSelectTopic = (topic) => {
     this.setState({ loadingNews: true });
     this.fetchTopNews(this.state.lang, topic);
