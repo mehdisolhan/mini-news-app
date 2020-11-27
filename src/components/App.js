@@ -6,7 +6,6 @@ import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
 import NewsList from "./NewsList";
 import Loading from "./Loading";
-import Badges from "./Badges";
 
 class App extends React.Component {
   state = {
@@ -19,6 +18,7 @@ class App extends React.Component {
     errMessage: "",
     loadingNews: true,
     loadingSources: true,
+    title: "Breaking News",
   };
 
   fetchTopNews = async (language, topic) => {
@@ -75,7 +75,11 @@ class App extends React.Component {
   }
 
   onFormSubmit = async (term) => {
-    this.setState({ loadingNews: true });
+    this.setState({
+      loadingNews: true,
+      selectedNewspaper: "",
+      title: "Search results: " + term,
+    });
     try {
       const response = await newsapi.get("/everything", {
         params: {
@@ -90,7 +94,7 @@ class App extends React.Component {
   };
 
   onSelectNewspaper = async (selectedSource) => {
-    this.setState({ loadingNews: true });
+    this.setState({ loadingNews: true, title: selectedSource });
     try {
       const response = await newsapi.get("/top-headlines", {
         params: {
@@ -119,13 +123,19 @@ class App extends React.Component {
       favoriteNewspapers: this.state.favoriteNewspapers.filter(
         (item) => item !== newspaper
       ),
-      newsSources: [...this.state.newsSources, newspaper],
+      newsSources: [newspaper, ...this.state.newsSources],
     });
   };
 
   onSelectTopic = (topic) => {
-    this.setState({ loadingNews: true });
-    this.fetchTopNews(this.state.lang, topic);
+    this.setState({
+      loadingNews: true,
+      selectedNewspaper: "",
+      title: topic + " news",
+    });
+    topic === "breaking"
+      ? this.fetchTopNews(this.state.lang, "")
+      : this.fetchTopNews(this.state.lang, topic);
   };
 
   renderSidebar() {
@@ -144,6 +154,7 @@ class App extends React.Component {
           onRemoveFavoriteNewspapers={this.onRemoveFavoriteNewspapers}
           favoriteNewspapers={this.state.favoriteNewspapers}
           onSelectNewspaper={this.onSelectNewspaper}
+          selectedNewspaper={this.state.selectedNewspaper}
         />
       );
     }
@@ -157,10 +168,10 @@ class App extends React.Component {
       return <Loading />;
     }
     if (this.state.news.length > 0) {
-      return <NewsList news={this.state.news} />;
+      return <NewsList news={this.state.news} title={this.state.title} />;
     }
     if (this.state.news.length === 0) {
-      return <div>There is no result...</div>;
+      return <div className="no-result">There is no result...</div>;
     }
     if (this.state.errMessage) {
       return <div>Error: {this.state.errMessage}</div>;
@@ -170,16 +181,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <SearchBar onTermSubmit={this.onFormSubmit} />
+        <SearchBar
+          onTermSubmit={this.onFormSubmit}
+          onSelectTopic={this.onSelectTopic}
+          title={this.state.title}
+        />
         <div className="row news-container">
           {this.renderSidebar()}
 
           <div className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div className="row">
-              <div className="col-sm-12 px-md-2">
-                <Badges onSelectTopic={this.onSelectTopic} />
-              </div>
-            </div>
             <div className="row">{this.renderNews()}</div>
           </div>
         </div>

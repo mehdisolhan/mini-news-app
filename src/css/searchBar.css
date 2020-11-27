@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "TitilliumWeb-Black";
+  src: local("TitilliumWeb-Black"),
+    url("../fonts/TitilliumWeb-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "TitilliumWeb-Regular";
+  src: local("TitilliumWeb-Regular"),
+    url("../fonts/TitilliumWeb-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "TitilliumWeb-SemiBold";
+  src: local("TitilliumWeb-SemiBold"),
+    url("../fonts/TitilliumWeb-SemiBold.ttf") format("truetype");
+}
+
+.search-bar {
+  background-color: #e85a4f;
+}
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-family: "TitilliumWeb-SemiBold";
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.navbar-brand:hover {
+  color: #131311 !important;
+}
+
+.nav-item {
+  color: #ffffff;
+  font-family: "TitilliumWeb-SemiBold";
+  font-size: 1rem;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.menu-item {
+  cursor: pointer;
+}
+.menu-item-search {
+  color: #ffffff;
+  cursor: pointer;
+  padding: 5px;
+}
+.menu-item-search:hover {
+  color: #131311;
+}
+.menu-item-search .fas {
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+
+.menu-item-search:hover .fas {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.menu-item .fas {
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+.menu-item:hover {
+  color: #131311;
+}
+.menu-item:hover .fas {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.form-control:focus {
+  border-color: #ff9b15 !important;
+  box-shadow: 0 0 0 0.2rem rgb(206 160 76) !important;
+}
+.top-toggler {
+  color: #131311 !important;
+  border: none;
+}
+.top-toggler:focus {
+  outline: none;
+}
+.top-toggler .fa-times {
+  color: #ecddc7;
+}
+
+/*Media queries*/
+@media (max-width: 990px) {
+  .navbar-nav {
+    margin-left: 0;
+  }
+}
+@media (min-width: 1170px) {
+  .navbar-nav {
+    margin-left: 80px;
+  }
+}
