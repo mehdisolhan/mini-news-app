@@ -15,7 +15,8 @@ git clone https://github.com/mehdisolhan/mini-news-app.git
 ```
 npm install
 ```
-This is required for required dependencies
+
+This is required for dependencies
 
 3- To run the project.
 
@@ -31,6 +32,7 @@ npm start
 - axios: 0.21.0
 - moment: 2.29.1
 - Font Awesome: 5.10.0
+- React-Reveal: 1.2.2
 
 ### Supported Browsers
 
@@ -50,6 +52,23 @@ https://newsapi.org/docs/get-started
 
 With free developer account, NewsAPI can only bring 20 news at a time. Therefore, there was no need for pagination. At the same time, there was no need to filter sources, as it brought about 50-60 in news sources.
 
+### User Interface Changes
+
+- News title changes dynamically
+- The product name on the top left leads to the homepage
+- An animation has been added to the menu on the left and news on the page. Thus, the user will be able to see the animation when adding favorites or scrolling down the page
+- News cards have been made more clear. When hover, box-shadow is shown
+- Theme and theme colors have been made warmer
+- The font was changed to Titillium Web font
+- Trend topics have been added to the top menu
+- Returning effect to the icons on the page has been made
+- The design of the Scrollbar in the left menu has become compatible with the page
+- Responsive design is made in the left menu
+- Navigation button has been added to the left menu
+- Which newspaper has been selected has now become more specific
+- The selected topic in the top menu has been made more specific
+- The search screen has been reworked
+
 ## Code Review
 
 The project was created with the following npm command
@@ -58,7 +77,7 @@ The project was created with the following npm command
 create-react-app mini-news-app
 ```
 
-I created the structure with one main component and six different components. My main component is **App.js**.
+I created the structure with one main component and five different components. My main component is **App.js**.
 
 ### App.js
 
@@ -154,14 +173,10 @@ It is used to edit fetched data.
 }
 ```
 
-### Badge.js
-
-With this component, I created the topics at the top. When I call this component with App.js, I send a function named `onSelectTopic` as prop. Thus, a fetching process takes place in App.js according to the topic clicked here. According to the clicked topic, news about that topic comes from the API and NewsList component is rendered.
-
 ### Loading.js
 
 This component was created to show the user something has been loaded during fetching operations. A component for UI purposes. Bootstrap's spinner class is used to show the load bar.
 
 ### SearchBar.js
 
-It was created to place a fixed navbar at the top of the page. When called from the main component, the async function named onFormSubmit is given as prop. Thus, a search can be made according to the entered word. It was created as a class component not to create an uncontrolled structure in SearchBar. There is a state named "term" in it. With the `onChange` event, each character entered is matched to this state and then to the value of the input object. Thus, a controlled structure was created.
+It was created to place a fixed navbar at the top of the page. When called from the main component, the async function named onFormSubmit is given as prop. Thus, a search can be made according to the entered word. It was created as a class component not to create an uncontrolled structure in SearchBar. There is a state named "term" in it. With the `onChange` event, each character entered is matched to this state and then to the value of the input object. Thus, a controlled structure was created. The component that was in the previous version as Badge.js was added here as menu items.
